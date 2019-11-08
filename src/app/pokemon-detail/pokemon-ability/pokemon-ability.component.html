@@ -1,0 +1,21 @@
+<div class="property">
+  Price
+  <span class="right"
+    ><b>{{ entry.price }} $</b></span
+  >
+</div>
+<div class="property">
+  Height <span class="right">{{ info.height * 10 }} cm</span>
+</div>
+<div class="property">
+  Weight <span class="right">{{ info.weight / 10 }} kg</span>
+</div>
+<div class="property">
+  Category <span class="right">{{ info.category }}</span>
+</div>
+<div class="property">
+  Abilities
+  <span *ngFor="let ability of info.abilities" class="right">{{
+    ability.name
+  }}</span>
+</div>

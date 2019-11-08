@@ -1,0 +1,22 @@
+<header>
+  <div class="headerBg"></div>
+  <nav>
+    <h3>
+      <a routerLink="/home" class="logo">{{ title }}</a>
+    </h3>
+    <div class="navLinksWrapper">
+      <a *ngIf="router.url !== '/home'" routerLink="/home">Home</a>
+      <a *ngIf="router.url === '/home'" routerLink="/about">About</a>
+      <a routerLink="/shop">Shop</a>
+      <a *ngIf="router.url !== '/home'" routerLink="/cart" class="button"
+        >Cart<a *ngIf="nbrItem > 0" class="button-cart">{{
+          getTotalItem() | async
+        }}</a></a
+      >
+    </div>
+  </nav>
+  <div *ngIf="router.url === '/home'" class="headerCopy">
+    <h1>Be the best pokemon trainer</h1>
+  </div>
+  <div *ngIf="router.url === '/home'" class="headerImage"></div>
+</header>

@@ -1,0 +1,50 @@
+<div class="stats">
+  Health points
+  <progress
+    class="progress"
+    value="{{ getStatPercentHP(stats.hp) }}"
+    max="100"
+    title="{{ stats.hp }}"
+    >{{ stats.hp }}</progress
+  >
+  Attack
+  <progress
+    class="progress"
+    value="{{ getStatPercentAttack(stats.attack) }}"
+    max="100"
+    title="{{ stats.attack }}"
+    >{{ stats.attack }}</progress
+  >
+  Defense
+  <progress
+    class="progress"
+    value="{{ getStatPercentDefense(stats.defense) }}"
+    max="100"
+    title="{{ stats.defense }}"
+    >{{ stats.defense }}</progress
+  >
+  Special Attack
+  <progress
+    class="progress"
+    value="{{ getStatPercentSpecialAttack(stats.specialAttack) }}"
+    max="100"
+    title="{{ stats.specialAttack }}"
+    >{{ stats.specialAttack }}</progress
+  >
+  Special Defense
+  <progress
+    class="progress"
+    value="{{ getStatPercentSpecialDefense(stats.specialDefense) }}"
+    max="100"
+    title="{{ stats.specialDefense }}"
+    >{{ stats.specialDefense }}</progress
+  >
+  Speed
+  <progress
+    class="progress"
+    value="{{ getStatPercentSpeed(stats.speed) }}"
+    max="100"
+    title="{{ stats.speed }}"
+    >{{ stats.speed }}</progress
+  >
+</div>

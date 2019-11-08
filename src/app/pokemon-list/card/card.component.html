@@ -1,0 +1,6 @@
+<h4 class="title">
+  <a routerLink="/pokemon/{{ pokemon.id }}">{{ pokemon.name }}</a>
+  <span class="price"> ${{ pokemon.price }}</span>
+</h4>
+<img src="{{ pokemon.sprite }}" routerLink="/pokemon/{{ pokemon.id }}" />
+<div (click)="addToCart(pokemon)" class="add">Add</div>

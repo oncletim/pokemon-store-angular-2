@@ -1,0 +1,18 @@
+.type {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primaryColorLight);
+  font-size: 0.6em;
+  text-align: center;
+  padding: 0.3em 0.6em;
+  border-radius: 1em;
+  border: 1px solid var(--primaryColorLight);
+  margin-left: 2px;
+}
+
+.center {
+  display: table;
+  margin: auto;
+  margin-bottom: 25px;
+}

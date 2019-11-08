@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PokemonEntry } from './core/models/pokemon-entry';
+import { CartService } from './core/services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokemon';
+  public shoppingCartItems$: Observable<PokemonEntry[]>;
+
+  constructor(private cartService: CartService) {
+    this.shoppingCartItems$ = this.cartService.getItems();
+    this.shoppingCartItems$.subscribe(_ => _);
+  }
 }

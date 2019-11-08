@@ -1,0 +1,17 @@
+<div class="text" [@cardState]="description.version">
+  <p [@descriptionState]="description" *ngIf="description != null">
+    {{ description.description }}
+  </p>
+  <form>
+    <select
+      class="select-version"
+      id="gameVersion"
+      name="gameVersion"
+      [(ngModel)]="description"
+    >
+      <option *ngFor="let description of descriptions" [ngValue]="description">
+        {{ description.version }}
+      </option>
+    </select>
+  </form>
+</div>

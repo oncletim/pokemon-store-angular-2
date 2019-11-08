@@ -1,0 +1,44 @@
+.title {
+  text-align: center;
+}
+
+.price {
+  opacity: 0.75;
+  font-size: 0.8em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.add {
+  background-color: var(--tertiaryColor);
+  opacity: 0.7;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 200px;
+  padding: 10px;
+  color: white;
+  border-top: 2px solid var(--tertiaryColorDark);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 535px) {
+  .add {
+    width: auto;
+  }
+}

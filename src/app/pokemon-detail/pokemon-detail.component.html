@@ -1,0 +1,30 @@
+<main>
+  <section class="detail">
+    <div class="detail-view parent up" *ngIf="loading">
+      Loading...
+    </div>
+    <div class="detail-view parent up" *ngIf="!loading">
+      <img src="{{ pokemon.baseInfo.sprite }}" class="child-img" />
+      <div class="data">
+        <h2 class="title center">{{ pokemon.baseInfo.name }}</h2>
+        <app-pokemon-types [types]="pokemon.types"></app-pokemon-types>
+        <app-pokemon-ability
+          [entry]="pokemon.baseInfo"
+          [info]="pokemon.abilityInfo"
+        ></app-pokemon-ability>
+        <app-pokemon-description
+          [descriptions]="pokemon.descriptions"
+        ></app-pokemon-description>
+
+        <app-pokemon-stats [stats]="pokemon.stats"></app-pokemon-stats>
+      </div>
+      <button (click)="addToCart(pokemon.baseInfo)" class="button child-button">
+        Add
+      </button>
+    </div>
+  </section>
+  <section class="detail">
+    <a class="previous" href="" routerLink="/shop">👈 return</a>
+    <a class="next" href="" routerLink="/cart">cart 👉</a>
+  </section>
+</main>

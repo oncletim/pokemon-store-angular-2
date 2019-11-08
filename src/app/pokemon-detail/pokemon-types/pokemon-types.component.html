@@ -1,0 +1,9 @@
+<div class="center">
+  <button
+    *ngFor="let type of types"
+    class="type card"
+    [ngStyle]="{ 'background-color': getColor(type) }"
+  >
+    {{ type.type }}
+  </button>
+</div>

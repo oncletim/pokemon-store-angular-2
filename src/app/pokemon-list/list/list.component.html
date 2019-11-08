@@ -1,0 +1,12 @@
+<main>
+  <section class="flex-container" *ngIf="!loading">
+    <div class="flex-item parent" *ngFor="let pokemon of pokemons">
+      <app-card [pokemon]="pokemon"></app-card>
+    </div>
+  </section>
+  <section class="flex-container" *ngIf="loading">
+    <div class="flex-item parent loading">
+      Pokémon ! Gotta Catch'em All!
+    </div>
+  </section>
+</main>

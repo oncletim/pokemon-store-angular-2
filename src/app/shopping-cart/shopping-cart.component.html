@@ -1,0 +1,63 @@
+<main>
+  <section class="shopping">
+    <div class="shopping-cart up" *ngIf="loading">
+      Loading...
+    </div>
+    <div class="shopping-cart up" *ngIf="!loading">
+      <div class="title">
+        You have {{ getTotalItem() | async }} pokemons in your bag
+      </div>
+      <div class="item" *ngFor="let item of shoppingCartItems">
+        <div class="buttons">
+          <span (click)="removeMoreItem(item)" class="delete-btn"></span>
+        </div>
+        <div class="img">
+          <img
+            class="image"
+            src="{{ item.sprite }}"
+            alt="Image of {{ item.name }}"
+          />
+        </div>
+        <div class="description">
+          <span>{{ item.name }}</span>
+        </div>
+        <div class="price">$ {{ item.price }}</div>
+
+        <div class="quantity">
+          <button
+            (click)="removeOneItem(item)"
+            class="plus-btn"
+            type="button"
+            name="button"
+          >
+            -
+          </button>
+          <input type="text" name="name" value="{{ item.quantity }}" />
+          <button
+            (click)="addItem(item)"
+            class="minus-btn"
+            type="button"
+            name="button"
+          >
+            +
+          </button>
+        </div>
+        <div class="price">
+          <b>$ {{ item.price * item.quantity | number: '1.2-2' }}</b>
+        </div>
+      </div>
+      <div *ngIf="empty">
+        <img
+          src="http://giphygifs.s3.amazonaws.com/media/Pok6284jGzyGA/200w_d.gif"
+          alt="Pikatchu is sad"
+        />
+      </div>
+      <div *ngIf="!empty">
+        <button routerLink="/hire-me" class="button">
+          Buy now<br />{{ getTotalAmount() | async | number: '1.2-2' }}<br />💸
+        </button>
+        <p *ngIf="(getTotalAmount() | async) > 40">Free shipping !</p>
+      </div>
+    </div>
+  </section>
+</main>
