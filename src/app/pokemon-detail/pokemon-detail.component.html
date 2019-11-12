@@ -1,7 +1,7 @@
 <main>
   <section class="detail">
     <div class="detail-view parent up" *ngIf="loading">
-      Loading...
+      <app-preloader></app-preloader>
     </div>
     <div class="detail-view parent up" *ngIf="!loading">
       <img src="{{ pokemon.baseInfo.sprite }}" class="child-img" />

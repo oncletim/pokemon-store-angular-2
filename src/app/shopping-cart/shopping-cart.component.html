@@ -1,7 +1,7 @@
 <main>
   <section class="shopping">
     <div class="shopping-cart up" *ngIf="loading">
-      Loading...
+      <app-preloader></app-preloader>
     </div>
     <div class="shopping-cart up" *ngIf="!loading">
       <div class="title">

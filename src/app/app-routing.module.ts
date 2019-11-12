@@ -1,25 +1,44 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { PokemonCardComponent } from './pokemon-list/card/card.component';
-import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
-import { HireMeComponent } from './shared/components/hire-me/hire-me.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { PokemonListComponent } from './pokemon-list/list/list.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'shop', component: PokemonListComponent },
-  { path: 'pokemon/:id', component: PokemonDetailComponent },
-  { path: 'cart', component: ShoppingCartComponent },
-  { path: 'hire-me', component: HireMeComponent },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'shop',
+    loadChildren: () =>
+      import('./pokemon-list/pokemon-list.module').then(
+        m => m.PokemonListModule
+      )
+  },
+  {
+    path: 'pokemon',
+    loadChildren: () =>
+      import('./pokemon-detail/pokemon-detail.module').then(
+        m => m.PokemonDetailModule
+      )
+  },
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        m => m.ShoppingCartModule
+      )
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
