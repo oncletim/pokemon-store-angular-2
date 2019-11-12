@@ -9,6 +9,7 @@ export enum PokemonListActionsTypes {
 
 export class FetchPokemonsRequest implements Action {
   readonly type = PokemonListActionsTypes.FETCH_POKEMONS_REQUEST;
+  constructor(public payload: { offset: number; limit: number }) {}
 }
 export class FetchPokemonsFailure implements Action {
   readonly type = PokemonListActionsTypes.FETCH_POKEMONS_FAILURE;

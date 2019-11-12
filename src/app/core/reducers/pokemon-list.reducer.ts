@@ -5,12 +5,16 @@ export interface State {
   pokemons: Pokemon[];
   isInProgress: boolean;
   error: string;
+  offset: number;
+  limit: number;
 }
 
 const initialState: State = {
   pokemons: [],
   isInProgress: false,
-  error: null
+  error: null,
+  offset: 0,
+  limit: 20
 };
 
 export function pokemonListReducer(
@@ -23,7 +27,9 @@ export function pokemonListReducer(
         ...state,
         pokemons: [...state.pokemons],
         isInProgress: true,
-        error: null
+        error: null,
+        offset: action.payload.offset,
+        limit: action.payload.limit
       };
     case PokemonListActions.PokemonListActionsTypes.FETCH_POKEMONS_FAILURE:
       return {
