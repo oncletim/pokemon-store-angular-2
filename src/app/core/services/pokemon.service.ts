@@ -27,26 +27,10 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
   findAll(offset: number = 0, limit: number = 20): Observable<PokemonList> {
-    let liste = this.http
-      .get<PokemonList>(
-        `${this._baseUrl}/pokemon?offset=${offset}&limit=${limit}`
-      )
-      .pipe(map(results => this.getList(results)));
-    return liste;
-  }
-
-  getList(data): PokemonList {
-    return new PokemonList(
-      data.results.map(result => this.getEntry(result)),
-      data.count
+    let liste = this.http.get<PokemonList>(
+      `${this._baseUrl}/pokemon?offset=${offset}&limit=${limit}`
     );
-  }
-
-  getEntry(data): PokemonEntry {
-    const matches = this._detailRegex.exec(data.url);
-    const id = matches == null ? null : parseInt(matches[1]);
-    const sprite = id == null ? null : `${this._spriteBaseUrl}/${id}.png`;
-    return new PokemonEntry(id, _.capitalize(data.name), sprite);
+    return liste;
   }
 
   findOne(id: number): Observable<Pokemon> {

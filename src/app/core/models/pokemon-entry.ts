@@ -31,3 +31,10 @@ export class PokemonEntry {
     return prices[randomIndex];
   }
 }
+
+export const getEntry = (data): PokemonEntry => {
+  const matches = this._detailRegex.exec(data.url);
+  const id = matches == null ? null : parseInt(matches[1]);
+  const sprite = id == null ? null : `${this._spriteBaseUrl}/${id}.png`;
+  return new PokemonEntry(id, _.capitalize(data.name), sprite);
+};
