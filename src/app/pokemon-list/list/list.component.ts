@@ -9,7 +9,7 @@ import { AppState } from './../../core/reducers/app.reducer';
 import { Component, OnInit } from '@angular/core';
 import { PokemonEntry } from 'src/app/core/models/pokemon-entry';
 import { Store } from '@ngrx/store';
-import * as PokemonActions from 'src/app/core/actions/pokemon-list.actions';
+import * as PokemonListActions from 'src/app/core/actions/pokemon-list.actions';
 
 @Component({
   selector: 'app-list',
@@ -32,7 +32,7 @@ export class PokemonListComponent implements OnInit {
 
     combineLatest(this.offset$, this.limit$).subscribe(([offset, limit]) => {
       this.store.dispatch(
-        new PokemonActions.FetchPokemonsRequest({ offset, limit })
+        new PokemonListActions.FetchPokemonsRequest({ offset, limit })
       );
     });
   }

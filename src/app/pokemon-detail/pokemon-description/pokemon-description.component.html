@@ -10,7 +10,7 @@
       [(ngModel)]="description"
     >
       <option *ngFor="let description of descriptions" [ngValue]="description">
-        {{ description.version }}
+        {{ description?.version }}
       </option>
     </select>
   </form>

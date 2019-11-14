@@ -38,7 +38,7 @@ export function pokemonDetailReducer(
       .FETCH_POKEMON_DETAIL_SUCCESS:
       return {
         ...state,
-        pokemon: action.payload.pokemon,
+        pokemon: action.payload,
         isInProgress: false,
         error: null
       };

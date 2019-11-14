@@ -1,3 +1,4 @@
+import { PokemonDetailEffects } from './core/effects/pokemon-detail.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
@@ -25,7 +26,7 @@ import { PokemonListEffects } from './core/effects/pokemon-list.effects';
     CoreModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
-    EffectsModule.forRoot([PokemonListEffects])
+    EffectsModule.forRoot([PokemonListEffects, PokemonDetailEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,3 +8,8 @@ export const getPokemonDetail = createSelector(
   root,
   (state: State) => state.pokemon
 );
+
+export const getIsInProgress = createSelector(
+  root,
+  (state: State) => state.isInProgress
+);

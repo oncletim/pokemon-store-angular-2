@@ -4,6 +4,7 @@
   position: relative;
   width: 64px;
   height: 64px;
+  z-index: 100 !important;
 }
 .lds-spinner div {
   transform-origin: 32px 32px;

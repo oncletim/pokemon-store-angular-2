@@ -1,26 +1,33 @@
 <main>
   <section class="detail">
-    <div class="detail-view parent up" *ngIf="loading">
+    <div class="detail-view parent up" *ngIf="isInProgress$ | async">
       <app-preloader></app-preloader>
     </div>
-    <div class="detail-view parent up" *ngIf="!loading">
-      <img src="{{ pokemon.baseInfo.sprite }}" class="child-img" />
+    <div class="detail-view parent up" *ngIf="!(isInProgress$ | async)">
+      <img src="{{ (pokemon$ | async)?.baseInfo.sprite }}" class="child-img" />
       <div class="data">
-        <h2 class="title center">{{ pokemon.baseInfo.name }}</h2>
-        <app-pokemon-types [types]="pokemon.types"></app-pokemon-types>
+        <h2 class="title center">{{ (pokemon$ | async)?.baseInfo.name }}</h2>
+        <app-pokemon-types
+          [types]="(pokemon$ | async)?.types"
+        ></app-pokemon-types>
         <app-pokemon-ability
-          [entry]="pokemon.baseInfo"
-          [info]="pokemon.abilityInfo"
+          [entry]="(pokemon$ | async)?.baseInfo"
+          [info]="(pokemon$ | async)?.abilityInfo"
         ></app-pokemon-ability>
         <app-pokemon-description
-          [descriptions]="pokemon.descriptions"
+          [descriptions]="(pokemon$ | async)?.descriptions"
         ></app-pokemon-description>
 
-        <app-pokemon-stats [stats]="pokemon.stats"></app-pokemon-stats>
+        <app-pokemon-stats
+          [stats]="(pokemon$ | async)?.stats"
+        ></app-pokemon-stats>
       </div>
-      <button (click)="addToCart(pokemon.baseInfo)" class="button child-button">
+      <!-- <button
+        (click)="addToCart((pokemon$ | async)?.baseInfo)"
+        class="button child-button"
+      >
         Add
-      </button>
+      </button> -->
     </div>
   </section>
   <section class="detail">

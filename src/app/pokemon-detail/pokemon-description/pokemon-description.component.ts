@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import {
   trigger,
   state,
@@ -28,7 +28,7 @@ import { PokemonDescription } from 'src/app/core/models/pokemon-description';
       ),
       state('White', style({ opacity: 0.8, backgroundColor: '#cfd8dc' })),
       state(
-        'Black',
+        'black',
         style({ opacity: 0.8, backgroundColor: '#212121', color: '#eceff1' })
       ),
       state('Soulsilver', style({ opacity: 0.8, backgroundColor: '#b0bec5' })),
@@ -69,7 +69,7 @@ import { PokemonDescription } from 'src/app/core/models/pokemon-description';
     ])
   ]
 })
-export class PokemonDescriptionComponent implements OnInit {
+export class PokemonDescriptionComponent implements OnInit, OnChanges {
   @Input() descriptions: PokemonDescription[];
   description: PokemonDescription;
 
