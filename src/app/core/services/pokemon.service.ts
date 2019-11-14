@@ -27,10 +27,9 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
   fetchPokemons(offset: number = 0, limit: number = 20): Observable<any> {
-    let liste = this.http.get<any>(
+    return this.http.get<any>(
       `${this._baseUrl}/pokemon?offset=${offset}&limit=${limit}`
     );
-    return liste;
   }
 
   findOne(id: number): Observable<Pokemon> {

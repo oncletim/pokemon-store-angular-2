@@ -1,7 +1,8 @@
 import {
   getOffset,
   getLimit,
-  getPokemons
+  getPokemons,
+  getIsInProgress
 } from './../../core/selectors/pokemon-list.selector';
 import { Observable, combineLatest } from 'rxjs';
 import { AppState } from './../../core/reducers/app.reducer';
@@ -17,6 +18,7 @@ import * as PokemonActions from 'src/app/core/actions/pokemon-list.actions';
 })
 export class PokemonListComponent implements OnInit {
   pokemons$: Observable<PokemonEntry[]>;
+  isInProgress$: Observable<boolean>;
   offset$: Observable<number>;
   limit$: Observable<number>;
 
@@ -25,23 +27,15 @@ export class PokemonListComponent implements OnInit {
   ngOnInit() {
     this.offset$ = this.store.select(getOffset);
     this.limit$ = this.store.select(getLimit);
+    this.pokemons$ = this.store.select(getPokemons);
+    this.isInProgress$ = this.store.select(getIsInProgress);
+
     combineLatest(this.offset$, this.limit$).subscribe(([offset, limit]) => {
       this.store.dispatch(
         new PokemonActions.FetchPokemonsRequest({ offset, limit })
       );
     });
-    this.pokemons$ = this.store.select(getPokemons);
-    // this.findAll(this.offset, this.limit);
   }
-
-  // findAll(offset: number, limit: number) {
-  //   this.pokemons = [];
-  //   this._service.findAll(offset, limit).subscribe(result => {
-  //     this.pokemons = result.pokemons;
-  //     this.count = result.count;
-  //     this.loading = false;
-  //   });
-  // }
 
   // onPageChange(offset$) {
   //   this.offset$ = offset$;

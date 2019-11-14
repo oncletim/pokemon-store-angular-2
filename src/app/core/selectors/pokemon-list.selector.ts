@@ -19,3 +19,8 @@ export const getOffset = createSelector(
   root,
   (state: State) => state.offset
 );
+
+export const getIsInProgress = createSelector(
+  root,
+  (state: State) => state.isInProgress
+);
