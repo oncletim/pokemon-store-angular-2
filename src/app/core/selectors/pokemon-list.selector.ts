@@ -1,13 +1,13 @@
 import { AppState } from '../reducers/app.reducer';
 import { createSelector } from '@ngrx/store';
 import { State } from '../reducers/pokemon-list.reducer';
-import { getList } from '../models/pokemon-list';
+import { getEntry } from '../models/pokemon-entry';
 
 export const root = (state: AppState): State => state.pokemons;
 
-export const getPokemonList = createSelector(
+export const getPokemons = createSelector(
   root,
-  (state: State) => getList(state.pokemons)
+  (state: State) => state.pokemons.map(pokemon => getEntry(pokemon))
 );
 
 export const getLimit = createSelector(

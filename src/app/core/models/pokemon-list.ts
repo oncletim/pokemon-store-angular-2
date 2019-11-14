@@ -9,9 +9,9 @@ export class PokemonList {
   }
 }
 
-export const getList = (data): PokemonList => {
+export const getList = (data: PokemonList) => {
   return new PokemonList(
-    data.results.map(result => getEntry(result)),
+    data.pokemons.map(pokemon => getEntry(pokemon)),
     data.count
   );
 };

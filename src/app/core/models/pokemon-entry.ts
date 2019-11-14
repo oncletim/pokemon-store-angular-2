@@ -33,8 +33,11 @@ export class PokemonEntry {
 }
 
 export const getEntry = (data): PokemonEntry => {
-  const matches = this._detailRegex.exec(data.url);
-  const id = matches == null ? null : parseInt(matches[1]);
-  const sprite = id == null ? null : `${this._spriteBaseUrl}/${id}.png`;
-  return new PokemonEntry(id, _.capitalize(data.name), sprite);
+  const detailRegex: RegExp = /^https:\/\/pokeapi.co\/api\/v2\/pokemon\/(\d+)\/$/;
+  const spriteBaseUrl: string =
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork';
+  const matches = detailRegex.exec(data.url);
+  const id = matches == null ? null : +matches[1];
+  const sprite = id == null ? null : `${spriteBaseUrl}/${id}.png`;
+  return new PokemonEntry(id, data.name.toUpperCase(), sprite);
 };

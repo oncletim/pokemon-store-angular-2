@@ -1,11 +1,11 @@
 <main>
-  <section class="flex-container" *ngIf="loading">
+  <!-- <section class="flex-container">
     <div class="flex-item parent loading">
       <app-preloader></app-preloader>
     </div>
-  </section>
-  <section class="flex-container" *ngIf="!loading">
-    <div class="flex-item parent" *ngFor="let pokemon of pokemons">
+  </section> -->
+  <section class="flex-container">
+    <div class="flex-item parent" *ngFor="let pokemon of pokemons$ | async">
       <app-card [pokemon]="pokemon"></app-card>
     </div>
   </section>

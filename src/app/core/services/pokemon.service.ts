@@ -26,8 +26,8 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-  findAll(offset: number = 0, limit: number = 20): Observable<PokemonList> {
-    let liste = this.http.get<PokemonList>(
+  fetchPokemons(offset: number = 0, limit: number = 20): Observable<any> {
+    let liste = this.http.get<any>(
       `${this._baseUrl}/pokemon?offset=${offset}&limit=${limit}`
     );
     return liste;

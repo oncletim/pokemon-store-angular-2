@@ -1,8 +1,9 @@
 import * as PokemonListActions from '../actions/pokemon-list.actions';
-import { Pokemon } from '../models/pokemon';
+
+import { PokemonEntry } from '../models/pokemon-entry';
 
 export interface State {
-  pokemons: Pokemon[];
+  pokemons: PokemonEntry[];
   isInProgress: boolean;
   error: string;
   offset: number;
@@ -25,7 +26,6 @@ export function pokemonListReducer(
     case PokemonListActions.PokemonListActionsTypes.FETCH_POKEMONS_REQUEST:
       return {
         ...state,
-        pokemons: [...state.pokemons],
         isInProgress: true,
         error: null,
         offset: action.payload.offset,
@@ -34,14 +34,13 @@ export function pokemonListReducer(
     case PokemonListActions.PokemonListActionsTypes.FETCH_POKEMONS_FAILURE:
       return {
         ...state,
-        pokemons: [...state.pokemons],
         isInProgress: false,
         error: action.payload
       };
     case PokemonListActions.PokemonListActionsTypes.FETCH_POKEMONS_SUCCESS:
       return {
         ...state,
-        pokemons: [...state.pokemons, ...action.payload.pokemons],
+        pokemons: action.payload,
         isInProgress: false,
         error: null
       };

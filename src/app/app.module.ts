@@ -11,6 +11,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import * as fromApp from 'src/app/core/reducers/app.reducer';
 import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { PokemonListEffects } from './core/effects/pokemon-list.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +24,8 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     CoreModule,
     StoreModule.forRoot(fromApp.appReducer),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    EffectsModule.forRoot([PokemonListEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

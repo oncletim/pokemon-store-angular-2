@@ -1,15 +1,14 @@
 import {
   getOffset,
-  getLimit
+  getLimit,
+  getPokemons
 } from './../../core/selectors/pokemon-list.selector';
 import { Observable, combineLatest } from 'rxjs';
 import { AppState } from './../../core/reducers/app.reducer';
 import { Component, OnInit } from '@angular/core';
 import { PokemonEntry } from 'src/app/core/models/pokemon-entry';
-import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { Store } from '@ngrx/store';
-import * as fromPokemonList from '.';
-import * as actions from 'src/app/core/actions/pokemon-list.actions';
+import * as PokemonActions from 'src/app/core/actions/pokemon-list.actions';
 
 @Component({
   selector: 'app-list',
@@ -17,24 +16,21 @@ import * as actions from 'src/app/core/actions/pokemon-list.actions';
   styleUrls: ['./list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
-  pokemons: PokemonEntry[];
-  count: number = 0;
+  pokemons$: Observable<PokemonEntry[]>;
   offset$: Observable<number>;
   limit$: Observable<number>;
 
-  loading: boolean = true;
-
-  constructor(
-    private _service: PokemonService,
-    private store: Store<AppState>
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.offset$ = this.store.select(getOffset);
     this.limit$ = this.store.select(getLimit);
     combineLatest(this.offset$, this.limit$).subscribe(([offset, limit]) => {
-      this.store.dispatch(new actions.FetchPokemonsRequest({ offset, limit }));
+      this.store.dispatch(
+        new PokemonActions.FetchPokemonsRequest({ offset, limit })
+      );
     });
+    this.pokemons$ = this.store.select(getPokemons);
     // this.findAll(this.offset, this.limit);
   }
 
@@ -47,8 +43,8 @@ export class PokemonListComponent implements OnInit {
   //   });
   // }
 
-  onPageChange(offset) {
-    this.offset = offset;
-    this.findAll(offset, this.limit);
-  }
+  // onPageChange(offset$) {
+  //   this.offset$ = offset$;
+  //   this.findAll(offset$, this.limit$);
+  // }
 }
