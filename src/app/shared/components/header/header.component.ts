@@ -12,8 +12,6 @@ import { getTotalItem } from 'src/app/core/selectors/cart.selector';
 })
 export class HeaderComponent implements OnInit {
   @Input() title: String;
-  @Input() nbrItem: number;
-
   constructor(public router: Router, public store: Store<AppState>) {}
 
   ngOnInit() {}
