@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PokemonEntry } from 'src/app/core/models/pokemon-entry';
-import { CartService } from 'src/app/core/services/cart.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/reducers/app.reducer';
+import * as CartActions from 'src/app/core/actions/cart.actions';
 
 @Component({
   selector: 'app-card',
@@ -11,11 +13,11 @@ export class PokemonCardComponent implements OnInit {
   @Input() pokemon: PokemonEntry = null;
   @Input() withLink: boolean = true; // if we want use the component just for description
 
-  constructor(private cartService: CartService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {}
 
-  public addToCart(pokemon: PokemonEntry) {
-    this.cartService.addPokemonToCart(pokemon);
+  public addToCart(item: PokemonEntry) {
+    this.store.dispatch(new CartActions.AddItem(item));
   }
 }

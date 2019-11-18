@@ -8,3 +8,19 @@ export const getItems = createSelector(
   root,
   (state: State) => state.items
 );
+
+export const getTotalItem = createSelector(
+  root,
+  (state: State) =>
+    state.items.reduce((prev, curr) => {
+      return prev + curr.quantity;
+    }, 0)
+);
+
+export const getTotalAmount = createSelector(
+  root,
+  (state: State) =>
+    state.items.reduce((prev, curr) => {
+      return prev + curr.price * curr.quantity;
+    }, 0)
+);

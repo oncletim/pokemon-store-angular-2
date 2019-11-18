@@ -1,4 +1,3 @@
-import { PokemonDetailEffects } from './core/effects/pokemon-detail.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
@@ -14,6 +13,8 @@ import * as fromApp from 'src/app/core/reducers/app.reducer';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { PokemonListEffects } from './core/effects/pokemon-list.effects';
+import { PokemonDetailEffects } from './core/effects/pokemon-detail.effects';
+import { CartItemsEffects } from './core/effects/cart.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,11 @@ import { PokemonListEffects } from './core/effects/pokemon-list.effects';
     CoreModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
-    EffectsModule.forRoot([PokemonListEffects, PokemonDetailEffects])
+    EffectsModule.forRoot([
+      PokemonListEffects,
+      PokemonDetailEffects,
+      CartItemsEffects
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

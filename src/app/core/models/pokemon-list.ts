@@ -2,16 +2,12 @@ import { PokemonEntry, getEntry } from './pokemon-entry';
 
 export class PokemonList {
   pokemons: PokemonEntry[];
-  count: number;
-  constructor(pokemons: PokemonEntry[], count: number) {
+  quantity: number;
+  constructor(pokemons: PokemonEntry[]) {
     this.pokemons = pokemons;
-    this.count = count;
   }
 }
 
 export const getList = (data: PokemonList) => {
-  return new PokemonList(
-    data.pokemons.map(pokemon => getEntry(pokemon)),
-    data.count
-  );
+  return new PokemonList(data.pokemons.map(pokemon => getEntry(pokemon)));
 };

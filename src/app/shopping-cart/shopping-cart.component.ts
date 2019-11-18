@@ -1,7 +1,11 @@
+import { PokemonEntry } from 'src/app/core/models/pokemon-entry';
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { PokemonEntry } from '../core/models/pokemon-entry';
-import { CartService } from '../core/services/cart.service';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/core/reducers/app.reducer';
+import { Store } from '@ngrx/store';
+import { getItems, getTotalAmount } from '../core/selectors/cart.selector';
+import { getTotalItem } from 'src/app/core/selectors/cart.selector';
+import * as CartActions from 'src/app/core/actions/cart.actions';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,45 +13,27 @@ import { CartService } from '../core/services/cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  public shoppingCartItems$: Observable<PokemonEntry[]> = of([]);
-  public shoppingCartItems: PokemonEntry[] = [];
+  public items$: Observable<PokemonEntry[]>;
+  public totalItems$: Observable<number>;
+  public totalAmount$: Observable<number>;
 
-  loading: boolean = true;
-  empty: boolean = true;
-  free: boolean = false;
-
-  constructor(private cartService: CartService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.getItems();
-  }
-
-  public getItems() {
-    this.shoppingCartItems$ = this.cartService.getItems();
-    this.shoppingCartItems$.subscribe(_ => (this.shoppingCartItems = _));
-    this.shoppingCartItems.length > 0
-      ? (this.empty = false)
-      : (this.empty = true);
-    this.loading = false;
-  }
-
-  public getTotalAmount(): Observable<number> {
-    return this.cartService.getTotalAmount();
-  }
-
-  public getTotalItem(): Observable<number> {
-    return this.cartService.getTotalItem();
-  }
-
-  public removeOneItem(item: PokemonEntry) {
-    this.cartService.removeOneFromCart(item);
-  }
-
-  public removeMoreItem(item: PokemonEntry) {
-    this.cartService.removeMoreFromCart(item);
+    this.items$ = this.store.select(getItems);
+    this.totalItems$ = this.store.select(getTotalItem);
+    this.totalAmount$ = this.store.select(getTotalAmount);
   }
 
   public addItem(item: PokemonEntry) {
-    this.cartService.addPokemonToCart(item);
+    this.store.dispatch(new CartActions.AddItem(item));
+  }
+
+  public removeItem(item: PokemonEntry) {
+    this.store.dispatch(new CartActions.RemoveItem(item));
+  }
+
+  public deleteItems(item: PokemonEntry) {
+    this.store.dispatch(new CartActions.DeleteItems(item));
   }
 }

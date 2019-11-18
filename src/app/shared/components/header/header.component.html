@@ -9,7 +9,7 @@
       <a *ngIf="router.url === '/home'" routerLink="/about">About</a>
       <a routerLink="/shop">Shop</a>
       <a *ngIf="router.url !== '/home'" routerLink="/cart" class="button"
-        >Cart<a *ngIf="nbrItem > 0" class="button-cart">{{
+        >Cart<a *ngIf="(getTotalItem() | async) > 0" class="button-cart">{{
           getTotalItem() | async
         }}</a></a
       >

@@ -10,7 +10,7 @@ export class PokemonEntry {
     this.name = name;
     this.sprite = sprite;
     this.price = this.generatePrice();
-    this.quantity = 1;
+    this.quantity = 0;
   }
 
   private generatePrice() {

@@ -1,28 +1,30 @@
+import { PokemonEntry } from 'src/app/core/models/pokemon-entry';
 import { Action } from '@ngrx/store';
-import { Pokemon } from '../models/pokemon';
 
 export enum CartActionsTypes {
   ADD_ITEM = '[Cart] Add Item',
-  DELETE_ITEM = '[Cart] Delete Item',
+  REMOVE_ITEM = '[Cart] Remove Item',
   DELETE_ITEMS = '[Cart] Delete Items',
-  DELETE_ITEMS_ALL = '[Cart] Delete All Items'
+  DELETE_ALL_ITEMS = '[Cart] Delete All Items'
 }
 
 export class AddItem implements Action {
   readonly type = CartActionsTypes.ADD_ITEM;
-  constructor(public payload: { pokemon: Pokemon; counter: number }) {}
+  constructor(public payload: PokemonEntry) {}
 }
 
-export class DeleteItem implements Action {
-  readonly type = CartActionsTypes.DELETE_ITEM;
+export class RemoveItem implements Action {
+  readonly type = CartActionsTypes.REMOVE_ITEM;
+  constructor(public payload: PokemonEntry) {}
 }
 
 export class DeleteItems implements Action {
   readonly type = CartActionsTypes.DELETE_ITEMS;
+  constructor(public payload: PokemonEntry) {}
 }
 
 export class DeleteAllItems implements Action {
-  readonly type = CartActionsTypes.DELETE_ITEMS_ALL;
+  readonly type = CartActionsTypes.DELETE_ALL_ITEMS;
 }
 
-export type CartActions = AddItem | DeleteItem | DeleteItems | DeleteAllItems;
+export type CartActions = AddItem | RemoveItem | DeleteItems | DeleteAllItems;

@@ -1,15 +1,26 @@
 <main>
   <section class="shopping">
-    <div class="shopping-cart up" *ngIf="loading">
+    <!-- <div class="shopping-cart up" *ngIf="loading">
       <app-preloader></app-preloader>
-    </div>
-    <div class="shopping-cart up" *ngIf="!loading">
-      <div class="title">
-        You have {{ getTotalItem() | async }} pokemons in your bag
+    </div> -->
+    <div class="shopping-cart up">
+      <div class="title" *ngIf="(totalItems$ | async) > 0; else noPokemon">
+        You have {{ totalItems$ | async }} pokemons in your bag
       </div>
-      <div class="item" *ngFor="let item of shoppingCartItems">
+      <ng-template #noPokemon>
+        <div class="title">
+          Why ? You don't like pokemon ?
+        </div>
+        <div>
+          <img
+            src="http://giphygifs.s3.amazonaws.com/media/Pok6284jGzyGA/200w_d.gif"
+            alt="Pikatchu is sad"
+          />
+        </div>
+      </ng-template>
+      <div class="item" *ngFor="let item of items$ | async">
         <div class="buttons">
-          <span (click)="removeMoreItem(item)" class="delete-btn"></span>
+          <span (click)="deleteItems(item)" class="delete-btn"></span>
         </div>
         <div class="img">
           <img
@@ -25,7 +36,7 @@
 
         <div class="quantity">
           <button
-            (click)="removeOneItem(item)"
+            (click)="removeItem(item)"
             class="plus-btn"
             type="button"
             name="button"
@@ -46,17 +57,12 @@
           <b>$ {{ item.price * item.quantity | number: '1.2-2' }}</b>
         </div>
       </div>
-      <div *ngIf="empty">
-        <img
-          src="http://giphygifs.s3.amazonaws.com/media/Pok6284jGzyGA/200w_d.gif"
-          alt="Pikatchu is sad"
-        />
-      </div>
-      <div *ngIf="!empty">
+
+      <div *ngIf="(totalItems$ | async) > 0">
         <button routerLink="/hire-me" class="button">
-          Buy now<br />{{ getTotalAmount() | async | number: '1.2-2' }}<br />💸
+          Buy now<br />{{ totalAmount$ | async | number: '1.2-2' }}<br />💸
         </button>
-        <p *ngIf="(getTotalAmount() | async) > 40">Free shipping !</p>
+        <p *ngIf="(totalAmount$ | async) > 40">Free shipping !</p>
       </div>
     </div>
   </section>

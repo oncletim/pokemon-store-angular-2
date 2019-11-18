@@ -22,12 +22,13 @@
           [stats]="(pokemon$ | async)?.stats"
         ></app-pokemon-stats>
       </div>
-      <!-- <button
-        (click)="addToCart((pokemon$ | async)?.baseInfo)"
+      <button
+        *ngIf="pokemon$ | async as pokemon"
+        (click)="addToCart(pokemon.baseInfo)"
         class="button child-button"
       >
         Add
-      </button> -->
+      </button>
     </div>
   </section>
   <section class="detail">
