@@ -10,6 +10,8 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     PageNotFoundComponent,
     PreloaderComponent,
     CustomToastComponent,
-    PaginationComponent
+    PaginationComponent,
+    ModalComponent,
+    FiltersComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     PageNotFoundComponent,
     PreloaderComponent,
     CustomToastComponent,
-    PaginationComponent
+    PaginationComponent,
+    ModalComponent,
+    FiltersComponent
   ],
   providers: [],
   entryComponents: [CustomToastComponent]

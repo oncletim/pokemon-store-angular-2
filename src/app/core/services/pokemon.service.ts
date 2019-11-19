@@ -59,4 +59,10 @@ export class PokemonService {
     );
     return result;
   }
+
+  fetchTypes(): Observable<any> {
+    return this.http
+      .get<any>(`${this._baseUrl}/type`)
+      .pipe(map(data => data.results));
+  }
 }

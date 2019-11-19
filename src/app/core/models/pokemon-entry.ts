@@ -4,6 +4,7 @@ export class PokemonEntry {
   sprite: string;
   price: number;
   quantity: number;
+  type: number;
 
   constructor(id: number, name: string, sprite: string) {
     this.id = id;
@@ -11,6 +12,7 @@ export class PokemonEntry {
     this.sprite = sprite;
     this.price = this.generatePrice();
     this.quantity = 0;
+    this.type = Math.floor(Math.random() * 10);
   }
 
   private generatePrice() {

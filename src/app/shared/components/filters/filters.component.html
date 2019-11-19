@@ -1,0 +1,10 @@
+<div class="card">
+  <select name="pokemon-type" (change)="onChangeType($event)">
+    <option value="0">all</option>
+    <option
+      *ngFor="let type of types$ | async; let i = index"
+      value="{{ i + 1 }}"
+      >{{ type.name }}</option
+    >
+  </select>
+</div>
