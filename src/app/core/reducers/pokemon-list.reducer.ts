@@ -44,6 +44,11 @@ export function pokemonListReducer(
         isInProgress: false,
         error: null
       };
+    case PokemonListActions.PokemonListActionsTypes.EDIT_OFFSET:
+      return {
+        ...state,
+        offset: action.payload
+      };
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import {
   getPokemons,
   getIsInProgress
 } from './../../core/selectors/pokemon-list.selector';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, Subscription } from 'rxjs';
 import { AppState } from './../../core/reducers/app.reducer';
 import { Component, OnInit } from '@angular/core';
 import { PokemonEntry } from 'src/app/core/models/pokemon-entry';
@@ -17,6 +17,7 @@ import * as PokemonListActions from 'src/app/core/actions/pokemon-list.actions';
   styleUrls: ['./list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
+  fetchSubscription: Subscription;
   pokemons$: Observable<PokemonEntry[]>;
   isInProgress$: Observable<boolean>;
   offset$: Observable<number>;
@@ -37,8 +38,7 @@ export class PokemonListComponent implements OnInit {
     });
   }
 
-  // onPageChange(offset$) {
-  //   this.offset$ = offset$;
-  //   this.findAll(offset$, this.limit$);
-  // }
+  onPageChange(newOffset: number) {
+    this.store.dispatch(new PokemonListActions.EditOffset(newOffset));
+  }
 }

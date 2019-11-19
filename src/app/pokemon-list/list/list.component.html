@@ -8,5 +8,11 @@
     <div class="flex-item parent" *ngFor="let pokemon of pokemons$ | async">
       <app-card [pokemon]="pokemon"></app-card>
     </div>
+    <app-pagination
+      [offset]="offset$ | async"
+      [limit]="limit$ | async"
+      (pageChange)="onPageChange($event)"
+    >
+    </app-pagination>
   </section>
 </main>

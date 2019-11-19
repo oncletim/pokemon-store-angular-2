@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
     HireMeComponent,
     PageNotFoundComponent,
     PreloaderComponent,
-    CustomToastComponent
+    CustomToastComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     HireMeComponent,
     PageNotFoundComponent,
     PreloaderComponent,
-    CustomToastComponent
+    CustomToastComponent,
+    PaginationComponent
   ],
   providers: [],
   entryComponents: [CustomToastComponent]

@@ -20,7 +20,7 @@ export class PokemonTypesComponent {
     fire: 'red',
     water: 'blue',
     grass: 'green',
-    electric: 'yellow',
+    electric: 'gold',
     psychic: ' pink',
     ice: 'blue',
     dragon: 'purple',
