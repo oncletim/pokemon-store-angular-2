@@ -1,27 +1,45 @@
-# Pokemon
+# PokemonStore
+![](https://media.giphy.com/media/KeFF77rJ0qL6bm3p9w/giphy.gif)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.10.
+## Getting Started
+Go on your project folder
+```bash
+$ git clone https://github.com/oncletim/pokemon-store.git
+$ cd pokemon-store
+$ npm install 
+$ ng serve
+```
+Go to http://localhost:4200/
 
-## Development server
+## Subject
+Persona: Jean, 25 ans, passionné de Pokémons
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Users Stories : En tant que Jean je peux... 
+- consulter la liste des Pokémons en vente, l’api ne fourni pas de prix pour les Pokémons, 
+vous pouvez mettre des prix aléatoires 
+- consulter la page de détail d’un Pokémon pour y trouver plus d’informations 
+- ajouter/retirer un Pokémon à mon panier 
+- consulter le détail de mon panier 
+- visualiser le montant de mon panier et le nombre de Pokémons tout au long de ma visite 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Routes
+- /home          
+- /shop
+- /cart
+- /pokemon/{id
+- /hire-me
 
-## Build
+## Built With
+- Angular CLI 8
+- RXJS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Authors
+Timothy ALCAIDE @oncletim
 
-## Running unit tests
+## License
+This project is licensed under the MIT License
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Screenshot
+![alt tag](https://github.com/oncletim/pokemon-store/blob/master/detail-view.png)
+![alt tag](https://github.com/oncletim/pokemon-store/blob/master/cart.png)
